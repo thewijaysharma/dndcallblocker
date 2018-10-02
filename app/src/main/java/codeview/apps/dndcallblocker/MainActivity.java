@@ -1,0 +1,13 @@
+package codeview.apps.dndcallblocker;
+import android.os.Bundle;
+
+import codeview.apps.dndcallblocker.view.activity.BaseActivity;
+
+public class MainActivity extends BaseActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
