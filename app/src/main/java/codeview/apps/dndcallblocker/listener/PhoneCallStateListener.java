@@ -1,7 +1,6 @@
-package codeview.apps.dndcallblocker.utils;
+package codeview.apps.dndcallblocker.listener;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -14,6 +13,7 @@ import java.lang.reflect.Method;
 public class PhoneCallStateListener extends PhoneStateListener {
 
     private Context context;
+
     public PhoneCallStateListener(Context context){
         this.context = context;
     }
@@ -25,13 +25,15 @@ public class PhoneCallStateListener extends PhoneStateListener {
 
             case TelephonyManager.CALL_STATE_RINGING:
                 Toast.makeText(context,"Call is coming",Toast.LENGTH_LONG).show();
-                String block_number = "9996993409";
+                String block_number = "9729042027";
                 AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 //Turn ON the mute
-                audioManager.setStreamMute(AudioManager.STREAM_RING, true);
+                if (audioManager != null) {
+                    audioManager.setStreamMute(AudioManager.STREAM_RING, true);
+                }
+
                 TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
                 try {
-                    Toast.makeText(context, "in"+block_number, Toast.LENGTH_LONG).show();
                     Class telephonyMgrClass = Class.forName(telephonyManager.getClass().getName());
                     Method method = telephonyMgrClass.getDeclaredMethod("getITelephony");
                     method.setAccessible(true);
@@ -49,10 +51,10 @@ public class PhoneCallStateListener extends PhoneStateListener {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
                 }
                 //Turn OFF the mute
-                audioManager.setStreamMute(AudioManager.STREAM_RING, false);
+                if (audioManager != null) {
+                    audioManager.setStreamMute(AudioManager.STREAM_RING, false);
+                }
                 break;
-
-            case PhoneStateListener.LISTEN_CALL_STATE:
 
         }
         super.onCallStateChanged(state, incomingNumber);
