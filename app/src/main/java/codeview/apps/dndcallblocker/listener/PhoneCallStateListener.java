@@ -3,18 +3,22 @@ package codeview.apps.dndcallblocker.listener;
 import android.content.Context;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.internal.telephony.ITelephony;
 
 import java.lang.reflect.Method;
 
+import codeview.apps.dndcallblocker.R;
+
 public class PhoneCallStateListener extends PhoneStateListener {
 
     private Context context;
-
-    public PhoneCallStateListener(Context context){
+    private static final String TAG=PhoneCallStateListener.class.getSimpleName();
+    public PhoneCallStateListener(Context context) {
         this.context = context;
     }
 
@@ -24,7 +28,7 @@ public class PhoneCallStateListener extends PhoneStateListener {
         switch (state) {
 
             case TelephonyManager.CALL_STATE_RINGING:
-                Toast.makeText(context,"Call is coming",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Call is coming", Toast.LENGTH_LONG).show();
                 String block_number = "9729042027";
                 AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 //Turn ON the mute
@@ -39,14 +43,20 @@ public class PhoneCallStateListener extends PhoneStateListener {
                     method.setAccessible(true);
                     ITelephony telephonyService;
                     //Checking incoming call number
-                    System.out.println("Call "+block_number);
+                    System.out.println("Call " + block_number);
 
-                    if (incomingNumber.contains(block_number)) {
-                        //telephonyService.silenceRinger();//Security exception problem
-                        telephonyService = (ITelephony) method.invoke(telephonyManager);
-                        telephonyService.silenceRinger();
-                        telephonyService.endCall();
-                    }
+                    telephonyService = (ITelephony) method.invoke(telephonyManager);
+                    telephonyService.silenceRinger();
+                    telephonyService.endCall();
+                    sendSMS(incomingNumber,context.getString(R.string.reject_call_message));
+
+//                    if (incomingNumber.contains(block_number)) {
+//                        //telephonyService.silenceRinger();//Security exception problem
+//                        telephonyService = (ITelephony) method.invoke(telephonyManager);
+//                        telephonyService.silenceRinger();
+//                        telephonyService.endCall();
+//                        sendSMS(incomingNumber,context.getString(R.string.reject_call_message));
+//                    }
                 } catch (Exception e) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -59,5 +69,17 @@ public class PhoneCallStateListener extends PhoneStateListener {
         }
         super.onCallStateChanged(state, incomingNumber);
     }
-}
 
+
+    private void sendSMS(String phoneNo, String msg) {
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+            Log.d(TAG, "sms sent to "+phoneNo);
+        } catch (Exception ex) {
+            Log.d(TAG, "sms sending failed");
+            ex.printStackTrace();
+        }
+    }
+
+}

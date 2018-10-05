@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DNDCallBlocker</string>
     <string name="ok">Ok</string>
+    <string name="reject_call_message">I am busy right now. Will call you back soon!</string>
 </resources>
