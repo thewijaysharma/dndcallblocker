@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.internal.telephony.ITelephony;
@@ -13,6 +14,7 @@ import java.lang.reflect.Method;
 public class PhoneCallStateListener extends PhoneStateListener {
 
     private Context context;
+    private static final String TAG=PhoneStateListener.class.getName();
 
     public PhoneCallStateListener(Context context){
         this.context = context;
@@ -20,6 +22,7 @@ public class PhoneCallStateListener extends PhoneStateListener {
 
     @Override
     public void onCallStateChanged(int state, String incomingNumber) {
+        Log.d(TAG, "Call state changed");
 
         switch (state) {
 

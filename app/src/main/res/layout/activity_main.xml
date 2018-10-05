@@ -7,11 +7,9 @@
     android:layout_height="match_parent"
     tools:context="codeview.apps.dndcallblocker.view.activity.MainActivity">
 
-    <Button
-        android:layout_margin="@dimen/margin_std"
-        android:id="@+id/dnd_button"
-        android:text="Enable DND"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless" />
 
 </android.support.design.widget.CoordinatorLayout>

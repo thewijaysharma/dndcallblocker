@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 public class PreferenceManager {
     private static SharedPreferences sharedPreferences;
-
+    public static final String ENABLE_DND="ENABLE_DND";
     private PreferenceManager() {
     }
 

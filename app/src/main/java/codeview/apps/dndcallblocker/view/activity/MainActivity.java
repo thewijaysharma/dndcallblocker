@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import codeview.apps.dndcallblocker.R;
+import codeview.apps.dndcallblocker.utils.PreferenceManager;
 
 public class MainActivity extends BaseActivity {
 
@@ -13,7 +14,14 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        initControl();
+
+        boolean isBlockingEnabled=PreferenceManager.read(PreferenceManager.ENABLE_DND,false);
+        if(isBlockingEnabled){
+            dndButton.setText("Enable DND");
+        }else {
+            dndButton.setText("Disable DND");
+        }
         dndButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -22,7 +30,8 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void initViews() {
+    private void initControl() {
+        PreferenceManager.init(this);
         dndButton=findViewById(R.id.dnd_button);
         parentView=findViewById(R.id.parent_layout);
     }
