@@ -2,6 +2,7 @@ package codeview.apps.dndcallblocker.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -16,6 +17,7 @@ import codeview.apps.dndcallblocker.listener.PhoneCallStateListener;
 public class CallReceiver extends BroadcastReceiver {
 
     private final String TAG = CallReceiver.class.getName();
+
 
     @Override
     public void onReceive(Context context, Intent intent) {

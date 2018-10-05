@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DNDCallBlocker</string>
     <string name="ok">Ok</string>
+    <string name="calls_blocked">Calls blocked</string>
+    <string name="calls_blocked_description">These notifications are to notify user about a blocked calls in DND mode</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
 </resources>
