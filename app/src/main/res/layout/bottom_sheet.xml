@@ -33,7 +33,10 @@
 
     </LinearLayout>
 
+    <include layout="@layout/seperator_layout"/>
+
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/call_logs_recycler"
         tools:listitem="@layout/row_call_log"

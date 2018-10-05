@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private ImageView arrowUpDown;
     private View sheetTopLayout;
     private RecyclerView logsRecycler;
+    private Animation startRotateAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +110,7 @@ public class MainActivity extends BaseActivity {
         dndButton=findViewById(R.id.dnd_button);
         parentView=findViewById(R.id.parent_layout);
         blockingStatus=findViewById(R.id.blocking_text);
+        startRotateAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         logsRecycler=findViewById(R.id.call_logs_recycler);
@@ -124,6 +128,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void toggleBottomSheet() {
+        arrowUpDown.startAnimation(startRotateAnimation);
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {
