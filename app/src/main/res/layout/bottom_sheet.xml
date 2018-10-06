@@ -1,0 +1,46 @@
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    app:behavior_peekHeight="50dp"
+    android:id="@+id/bottom_sheet"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/sheet_top_layout"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:text="Calls Blocked : 14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/arrow_up_down"
+            android:src="@drawable/arrow_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <include layout="@layout/seperator_layout"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/call_logs_recycler"
+        tools:listitem="@layout/row_call_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
