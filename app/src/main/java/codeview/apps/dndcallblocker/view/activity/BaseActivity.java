@@ -3,9 +3,11 @@ package codeview.apps.dndcallblocker.view.activity;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +29,14 @@ public class BaseActivity extends AppCompatActivity {
         snackbar.show();
     }
 
+    protected void showActionBar(){
+        ActionBar mActionBar=getSupportActionBar();
+        if(mActionBar!=null){
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
     protected void createAlert(String message, String title) {
         AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle).create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorWhite)));
@@ -42,5 +52,11 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

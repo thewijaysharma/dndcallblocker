@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/barlow_medium</item>
     </style>
 
     <style name="ThemeNoTitle" parent="Theme.AppCompat.NoActionBar">
@@ -15,11 +16,17 @@
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/barlow_medium</item>
     </style>
 
     <style name="SwitchTheme">
         <item name="android:colorForeground">@color/lightGray</item>
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
+
+    <style name="UpgradeProButtonStyle">
+
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">

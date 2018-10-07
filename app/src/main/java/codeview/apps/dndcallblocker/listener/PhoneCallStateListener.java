@@ -29,7 +29,6 @@ public class PhoneCallStateListener extends PhoneStateListener {
 
             case TelephonyManager.CALL_STATE_RINGING:
                 Toast.makeText(context, "Call is coming", Toast.LENGTH_LONG).show();
-                String block_number = "9729042027";
                 AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 //Turn ON the mute
                 if (audioManager != null) {
@@ -42,9 +41,6 @@ public class PhoneCallStateListener extends PhoneStateListener {
                     Method method = telephonyMgrClass.getDeclaredMethod("getITelephony");
                     method.setAccessible(true);
                     ITelephony telephonyService;
-                    //Checking incoming call number
-                    System.out.println("Call " + block_number);
-
                     telephonyService = (ITelephony) method.invoke(telephonyManager);
                     telephonyService.silenceRinger();
                     telephonyService.endCall();

@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/sheet_top_layout"
         android:gravity="center_vertical"
-        android:padding="12dp"
+        android:padding="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         <TextView
             android:layout_weight="1"
             android:textSize="17sp"
-            android:text="Calls Blocked : 14"
+            android:text="Calls Blocked : 10"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -29,11 +29,12 @@
             android:id="@+id/arrow_up_down"
             android:src="@drawable/arrow_top"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="Slide bottom sheet" />
 
     </LinearLayout>
 
-    <include layout="@layout/seperator_layout"/>
+    <include layout="@layout/seperator_light"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="10dp"

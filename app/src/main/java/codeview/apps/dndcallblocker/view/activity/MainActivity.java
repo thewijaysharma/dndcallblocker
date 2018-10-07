@@ -1,4 +1,5 @@
 package codeview.apps.dndcallblocker.view.activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -14,7 +15,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import codeview.apps.dndcallblocker.R;
+import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
 import codeview.apps.dndcallblocker.view.adapter.CallLogsAdapter;
 
@@ -29,14 +35,16 @@ public class MainActivity extends BaseActivity {
     private ImageView arrowUpDown;
     private View sheetTopLayout;
     private RecyclerView logsRecycler;
-    private Animation startRotateAnimation;
+//    private Animation startRotateAnimation;
+    private AdView adView;
+    private  ImageButton proButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initControl();
-
+        loadAds();
         if(isBlockingEnabled){
             dndButton.setImageResource(R.drawable.green_power_button);
             blockingStatus.setText("Blocking mode is enabled");
@@ -48,17 +56,7 @@ public class MainActivity extends BaseActivity {
         dndButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isBlockingEnabled){
-                    isBlockingEnabled=false;
-                    dndButton.setImageResource(R.drawable.red_power_button);
-                    blockingStatus.setText("Blocking mode is disabled");
-                    PreferenceManager.write(PreferenceManager.ENABLE_DND,false);
-                }else {
-                    isBlockingEnabled=true;
-                    dndButton.setImageResource(R.drawable.green_power_button);
-                    blockingStatus.setText("Blocking mode is enabled");
-                    PreferenceManager.write(PreferenceManager.ENABLE_DND,true);
-                }
+                toggleBlockingMode();
             }
         });
 
@@ -88,7 +86,16 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                arrowUpDown.setRotation(slideOffset * 180);
 
+            }
+        });
+
+        proButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,UpgradeToProActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -100,6 +107,11 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void loadAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
     private void initControl() {
         PreferenceManager.init(getApplicationContext());
         isBlockingEnabled=PreferenceManager.read(PreferenceManager.ENABLE_DND,false);
@@ -109,13 +121,16 @@ public class MainActivity extends BaseActivity {
         arrowUpDown=findViewById(R.id.arrow_up_down);
         dndButton=findViewById(R.id.dnd_button);
         parentView=findViewById(R.id.parent_layout);
+        proButton=findViewById(R.id.pro_button);
         blockingStatus=findViewById(R.id.blocking_text);
-        startRotateAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
+        adView=findViewById(R.id.main_banner_ad);
+//        startRotateAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         logsRecycler=findViewById(R.id.call_logs_recycler);
         logsRecycler.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycler_divider));
         logsRecycler.addItemDecoration(dividerItemDecoration);
         logsRecycler.setAdapter(new CallLogsAdapter());
     }
@@ -127,8 +142,23 @@ public class MainActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void toggleBlockingMode(){
+        AppUtils.vibratePhone(this);
+        if(isBlockingEnabled){
+            isBlockingEnabled=false;
+            dndButton.setImageResource(R.drawable.red_power_button);
+            blockingStatus.setText("Blocking mode is disabled");
+            PreferenceManager.write(PreferenceManager.ENABLE_DND,false);
+        }else {
+            isBlockingEnabled=true;
+            dndButton.setImageResource(R.drawable.green_power_button);
+            blockingStatus.setText("Blocking mode is enabled");
+            PreferenceManager.write(PreferenceManager.ENABLE_DND,true);
+        }
+    }
+
     public void toggleBottomSheet() {
-        arrowUpDown.startAnimation(startRotateAnimation);
+//        arrowUpDown.startAnimation(startRotateAnimation);
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {

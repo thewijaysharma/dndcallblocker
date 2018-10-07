@@ -3,6 +3,8 @@ package codeview.apps.dndcallblocker.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -49,5 +51,12 @@ public class AppUtils {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public static void vibratePhone(Context context){
+        Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibe != null) {
+            vibe.vibrate(80);
+        }
     }
 }
