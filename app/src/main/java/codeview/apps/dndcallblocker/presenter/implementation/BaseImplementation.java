@@ -1,4 +1,4 @@
-package codeview.apps.dndcallblocker.presenter_impl;
+package codeview.apps.dndcallblocker.presenter.implementation;
 
 import codeview.apps.dndcallblocker.presenter.BasePresenter;
 

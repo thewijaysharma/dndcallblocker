@@ -9,6 +9,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import codeview.apps.dndcallblocker.listener.PhoneCallStateListener;
+import codeview.apps.dndcallblocker.utils.PreferenceManager;
 
 /**
  * Created by Wijay on 2/10/2018.
@@ -38,6 +39,11 @@ public class CallReceiver extends BroadcastReceiver {
                 telephony.listen(customPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
             }else{
                 Log.d(TAG, "onReceive: telephony manager is null");
+            }
+        }else if(intent.getAction()!=null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
+            boolean isDndEnabled=PreferenceManager.read(PreferenceManager.ENABLE_DND,false);
+            if(isDndEnabled){
+                abortBroadcast();
             }
         }
 

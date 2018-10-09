@@ -26,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void showSnackbar(String msg, View parentView){
         Snackbar snackbar = Snackbar.make(parentView, msg, Snackbar.LENGTH_LONG);
+
         snackbar.show();
     }
 
@@ -34,6 +35,15 @@ public class BaseActivity extends AppCompatActivity {
         if(mActionBar!=null){
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    protected void showActionBar(String title){
+        ActionBar mActionBar=getSupportActionBar();
+        if(mActionBar!=null){
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+            mActionBar.setTitle(title);
         }
     }
 

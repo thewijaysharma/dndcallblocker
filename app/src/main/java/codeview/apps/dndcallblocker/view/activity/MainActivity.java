@@ -9,13 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -38,6 +35,7 @@ public class MainActivity extends BaseActivity {
 //    private Animation startRotateAnimation;
     private AdView adView;
     private  ImageButton proButton;
+    private View createBlacklist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +59,6 @@ public class MainActivity extends BaseActivity {
         });
 
 
-        /**
-         * bottom sheet state change listener
-         * we are changing button text when sheet changed state
-         * */
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -88,6 +82,14 @@ public class MainActivity extends BaseActivity {
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 arrowUpDown.setRotation(slideOffset * 180);
 
+            }
+        });
+
+        createBlacklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,AddBlacklistActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -124,6 +126,7 @@ public class MainActivity extends BaseActivity {
         proButton=findViewById(R.id.pro_button);
         blockingStatus=findViewById(R.id.blocking_text);
         adView=findViewById(R.id.main_banner_ad);
+        createBlacklist=findViewById(R.id.create_blacklist);
 //        startRotateAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);

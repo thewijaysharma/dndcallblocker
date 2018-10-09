@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="codeview.apps.dndcallblocker">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -37,16 +36,23 @@
             android:name=".receiver.CallReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
+            <intent-filter android:priority="9999999">
                 <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter android:priority="9999999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".view.activity.UpgradeToProActivity"
-            android:label="@string/upgrade_to_pro"/>
-        <activity android:name=".view.activity.AddBlacklistActivity"
-            android:label="Add New Blacklist"/>
+            android:label="@string/upgrade_to_pro" />
+        <activity
+            android:name=".view.activity.AddBlacklistActivity"
+            android:label="Blacklist numbers" />
+        <activity
+            android:label="Chose blacklist numbers"
+            android:name=".view.activity.ChoseBlacklistActivity"/>
     </application>
 
 </manifest>

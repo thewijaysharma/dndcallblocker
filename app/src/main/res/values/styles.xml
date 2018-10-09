@@ -24,6 +24,9 @@
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="FabStyle" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorGreen</item>
+    </style>
 
     <style name="UpgradeProButtonStyle">
 
