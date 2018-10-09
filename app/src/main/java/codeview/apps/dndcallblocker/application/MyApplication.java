@@ -5,6 +5,7 @@ import android.app.Application;
 import com.google.android.gms.ads.MobileAds;
 
 import codeview.apps.dndcallblocker.R;
+import codeview.apps.dndcallblocker.database.BlacklistDatabase;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
 
 /**
