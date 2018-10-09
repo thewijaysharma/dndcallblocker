@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/parent_layout"
     android:background="@drawable/background"
-    tools:context="codeview.apps.dndcallblocker.view.activity.AddBlacklistActivity">
+    tools:context="codeview.apps.dndcallblocker.view.activity.ShowBlacklistActivity">
 
     <android.support.v7.widget.RecyclerView
         android:visibility="gone"

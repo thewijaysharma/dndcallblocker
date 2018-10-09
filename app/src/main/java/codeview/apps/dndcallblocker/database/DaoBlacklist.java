@@ -1,5 +1,6 @@
 package codeview.apps.dndcallblocker.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -18,8 +19,8 @@ public interface DaoBlacklist {
     @Insert
     void insertBlacklist(BlacklistModel blacklistModel);
 
-    @Query("SELECT * FROM blacklist WHERE phone = :phoneNum")
-    List<BlacklistModel> getAllBlacklist(String phoneNum);
+    @Query("SELECT * FROM blacklist")
+    LiveData<List<BlacklistModel>> getAllBlacklist();
 
     @Delete
     void deleteItem(BlacklistModel blacklistModel);

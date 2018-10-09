@@ -4,15 +4,20 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.sql.Time;
+
 /**
  * Created by Wijay on 4/10/2018.
  */
 @Entity(tableName = "blacklist")
 public class BlacklistModel {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     private String name;
     @NonNull
-    @PrimaryKey
     private String phone;
 
     public BlacklistModel(String name, String phone) {

@@ -48,7 +48,7 @@
             android:name=".view.activity.UpgradeToProActivity"
             android:label="@string/upgrade_to_pro" />
         <activity
-            android:name=".view.activity.AddBlacklistActivity"
+            android:name=".view.activity.ShowBlacklistActivity"
             android:label="Blacklist numbers" />
         <activity
             android:label="Chose blacklist numbers"

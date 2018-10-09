@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
         createBlacklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,AddBlacklistActivity.class);
+                Intent intent=new Intent(MainActivity.this,ShowBlacklistActivity.class);
                 startActivity(intent);
             }
         });

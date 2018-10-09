@@ -13,10 +13,11 @@ public abstract class BlacklistDatabase extends RoomDatabase {
 
     public abstract DaoBlacklist daoBlacklist();
 
-    public static BlacklistDatabase getAppDatabase(Context context){
+    public static synchronized BlacklistDatabase getAppDatabase(Context context){
         if(INSTANCE==null){
-            INSTANCE=Room.databaseBuilder(context,BlacklistDatabase.class,AppConstants.DATABASE_NAME)
+            INSTANCE=Room.databaseBuilder(context.getApplicationContext(),BlacklistDatabase.class,AppConstants.DATABASE_NAME)
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return INSTANCE;
