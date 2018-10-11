@@ -2,13 +2,17 @@ package codeview.apps.dndcallblocker.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
+import android.os.Bundle;
 import android.telephony.PhoneStateListener;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import codeview.apps.dndcallblocker.listener.PhoneCallStateListener;
+import codeview.apps.dndcallblocker.utils.AppConstants;
+import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
 
 /**
@@ -18,7 +22,6 @@ import codeview.apps.dndcallblocker.utils.PreferenceManager;
 public class CallReceiver extends BroadcastReceiver {
 
     private final String TAG = CallReceiver.class.getName();
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,13 +40,30 @@ public class CallReceiver extends BroadcastReceiver {
             TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             if (telephony != null) {
                 telephony.listen(customPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-            }else{
+            } else {
                 Log.d(TAG, "onReceive: telephony manager is null");
             }
-        }else if(intent.getAction()!=null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
-            boolean isDndEnabled=PreferenceManager.read(PreferenceManager.ENABLE_DND,false);
-            if(isDndEnabled){
+        } else if (intent.getAction() != null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+            boolean isDndEnabled = PreferenceManager.read(PreferenceManager.IS_DND_ENABLED, false);
+            boolean isBlockSmsOn = PreferenceManager.read(PreferenceManager.IS_BLOCK_SMS_ON, false);
+            Bundle bundle = intent.getExtras();
+            String phoneNumber= "";
+            if (bundle != null) {
+                final Object[] pdusObj = (Object[]) bundle.get("pdus");
+
+                if (pdusObj != null) {
+                    for (Object aPdusObj : pdusObj) {
+                        SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) aPdusObj);
+                        phoneNumber = currentMessage.getDisplayOriginatingAddress();
+                    }
+                }
+            }
+
+
+
+            if (isDndEnabled && isBlockSmsOn) {
                 abortBroadcast();
+                AppUtils.showNotification(context, "DND Mode", "SMS blocked from "+phoneNumber, AppConstants.BLOCKED_NOTIF_CHANNEL);
             }
         }
 

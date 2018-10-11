@@ -8,21 +8,83 @@
     android:background="@drawable/background"
     tools:context="codeview.apps.dndcallblocker.view.activity.ShowBlacklistActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/blacklist_recycler"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_margin="@dimen/margin_std"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:fontFamily="@font/barlow_semibold"
-        android:text="No blacklisted numbers to show"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:paddingStart="@dimen/margin_std"
+                android:paddingEnd="@dimen/margin_std"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:text="@string/block_all_incoming_calls_sms"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <Switch
+                    android:id="@+id/block_with_sms_switch"
+                    android:theme="@style/SwitchTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/blacklist_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_margin="@dimen/margin_std"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:fontFamily="@font/barlow_semibold"
+                android:text="No blacklisted numbers to show"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/disable_layer"
+                android:alpha="0.4"
+                android:background="@color/veryLightGray"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </FrameLayout>
+
+
+
+
+    </LinearLayout>
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_blacklist_fab"

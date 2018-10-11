@@ -1,10 +1,13 @@
 package codeview.apps.dndcallblocker.utils;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -56,7 +59,21 @@ public class AppUtils {
     public static void vibratePhone(Context context){
         Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (vibe != null) {
-            vibe.vibrate(80);
+            vibe.vibrate(90);
+        }
+    }
+
+    public static void showNotification(Context context,String title, String description,String channelID){
+        if(PreferenceManager.read(PreferenceManager.IS_SHOW_NOTIF_ON,false)){
+            NotificationManagerCompat notifManagerCompat=NotificationManagerCompat.from(context);
+            Notification notification=new NotificationCompat.Builder(context,channelID)
+                    .setSmallIcon(R.drawable.ic_do_not_disturb)
+                    .setContentTitle(title)
+                    .setContentText(description)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setCategory(NotificationCompat.CATEGORY_CALL)
+                    .build();
+            notifManagerCompat.notify(1,notification);
         }
     }
 }

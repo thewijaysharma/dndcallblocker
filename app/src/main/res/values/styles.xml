@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/barlow_medium</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/lightGray</item>
     </style>
 
     <style name="ThemeNoTitle" parent="Theme.AppCompat.NoActionBar">
@@ -33,6 +35,10 @@
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-
+        <item name="android:textColorHint">@color/lightGray</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/lightGray</item>
     </style>
 </resources>

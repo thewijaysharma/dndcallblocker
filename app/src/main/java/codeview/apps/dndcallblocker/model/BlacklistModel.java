@@ -20,24 +20,34 @@ public class BlacklistModel {
     @NonNull
     private String phone;
 
-    public BlacklistModel(String name, String phone) {
+    public BlacklistModel(@NonNull String name, @NonNull String phone) {
         this.name = name;
         this.phone = phone;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
+    @NonNull
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(@NonNull String phone) {
         this.phone = phone;
     }
 }
