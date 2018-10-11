@@ -2,7 +2,6 @@ package codeview.apps.dndcallblocker.listener;
 
 import android.content.Context;
 import android.media.AudioManager;
-import android.support.v4.app.NotificationManagerCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
@@ -13,7 +12,8 @@ import com.android.internal.telephony.ITelephony;
 
 import java.lang.reflect.Method;
 
-import codeview.apps.dndcallblocker.R;
+import codeview.apps.dndcallblocker.database.BlacklistDatabase;
+import codeview.apps.dndcallblocker.model.LogModel;
 import codeview.apps.dndcallblocker.utils.AppConstants;
 import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
@@ -50,7 +50,7 @@ public class PhoneCallStateListener extends PhoneStateListener {
                     telephonyService.endCall();
                     sendSMS(incomingNumber);
                     AppUtils.showNotification(context,"DND Mode","Call blocked from : "+incomingNumber,AppConstants.BLOCKED_NOTIF_CHANNEL);
-
+                    saveLogToDb(incomingNumber);
                 } catch (Exception e) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -62,6 +62,11 @@ public class PhoneCallStateListener extends PhoneStateListener {
 
         }
         super.onCallStateChanged(state, incomingNumber);
+    }
+
+    private void saveLogToDb(String incomingNum) {
+        LogModel logModel=new LogModel(incomingNum,AppUtils.getCurrentTime(),false);
+        BlacklistDatabase.getAppDatabase(context).daoLogs().insertLog(logModel);
     }
 
 

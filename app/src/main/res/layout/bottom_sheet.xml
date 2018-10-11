@@ -2,23 +2,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/bottom_sheet_behavior"
-    app:behavior_peekHeight="56dp"
+    app:behavior_peekHeight="54dp"
     android:id="@+id/bottom_sheet"
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
+
+    <include layout="@layout/seperator_light"/>
 
     <LinearLayout
         android:id="@+id/sheet_top_layout"
         android:gravity="center_vertical"
-        android:padding="15dp"
+        android:padding="12dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UseCompoundDrawables">
 
         <TextView
+            android:id="@+id/block_count"
             android:layout_weight="1"
             android:textSize="17sp"
             android:text="Calls Blocked : 10"

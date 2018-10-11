@@ -12,6 +12,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import codeview.apps.dndcallblocker.R;
 
 public class AppUtils {
@@ -75,5 +80,10 @@ public class AppUtils {
                     .build();
             notifManagerCompat.notify(1,notification);
         }
+    }
+
+    public static String getCurrentTime(){
+        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm", Locale.US);
+        return df.format(Calendar.getInstance().getTime());
     }
 }

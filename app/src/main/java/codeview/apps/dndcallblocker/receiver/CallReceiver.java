@@ -1,5 +1,7 @@
 package codeview.apps.dndcallblocker.receiver;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

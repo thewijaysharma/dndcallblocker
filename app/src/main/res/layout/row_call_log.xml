@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/call_log_text"
-    android:orientation="vertical"
+<RelativeLayout
     android:paddingStart="15dp"
     android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+    android:paddingTop="7dp"
     android:paddingEnd="15dp"
-    android:paddingTop="10dp"
+    android:paddingRight="15dp"
     android:paddingBottom="10dp"
-    android:text="1.    9996296657 (Vijay Sharma)"
-    android:maxLines="1"
-    android:textSize="18sp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-</TextView>
+    <TextView
+        android:layout_below="@+id/time"
+        android:layout_alignParentStart="true"
+        android:id="@+id/call_log_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginTop="7dp"
+        android:ellipsize="end"
+        android:orientation="vertical"
+        android:text="1.    Call blocked from +91-7988316536"
+        android:textSize="@dimen/large_text"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:textColor="@color/veryLightGray"
+        android:layout_alignParentTop="true"
+        android:id="@+id/time"
+        android:text="Thu 11 Oct 2018, 15:40"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="@dimen/small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

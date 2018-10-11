@@ -20,6 +20,7 @@ public class ChoseBlacklistActivity extends BaseActivity {
         setContentView(R.layout.activity_chose_blacklist);
         initViews();
         showActionBar();
+        showToast("This feature is still in development mode!");
 
     }
 

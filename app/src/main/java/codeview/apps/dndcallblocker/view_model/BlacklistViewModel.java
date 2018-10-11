@@ -8,30 +8,35 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import codeview.apps.dndcallblocker.model.BlacklistModel;
-import codeview.apps.dndcallblocker.model.BlacklistRepository;
+import codeview.apps.dndcallblocker.model.Repository;
 
 public class BlacklistViewModel extends AndroidViewModel {
 
-    private BlacklistRepository repository;
+    private Repository repository;
     private LiveData<List<BlacklistModel>> allBlacklists;
 
     public BlacklistViewModel(@NonNull Application application) {
         super(application);
-        repository=new BlacklistRepository(application);
+        repository=new Repository(application);
         allBlacklists=repository.getAllBlacklists();
-    }
-
-    public void insert(BlacklistModel blacklistModel){
-        repository.insert(blacklistModel);
-    }
-    public void delete(BlacklistModel blacklistModel){
-        repository.delete(blacklistModel);
-    }
-    public void deleteAll(){
-        repository.deleteAllBlacklist();
     }
 
     public LiveData<List<BlacklistModel>> getAllBlacklists(){
         return allBlacklists;
     }
+
+    public void insertBlacklist(BlacklistModel blacklistModel){
+        repository.insertBlacklist(blacklistModel);
+    }
+    public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels){
+        repository.insertMultipleBlacklist(blacklistModels);
+    }
+
+    public void deleteBlacklist(BlacklistModel blacklistModel){
+        repository.deleteBlacklist(blacklistModel);
+    }
+    public void deleteAllBlacklist(){
+        repository.deleteAllBlacklist();
+    }
+
 }

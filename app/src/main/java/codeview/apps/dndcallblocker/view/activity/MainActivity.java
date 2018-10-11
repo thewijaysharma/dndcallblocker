@@ -1,9 +1,12 @@
 package codeview.apps.dndcallblocker.view.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
@@ -25,10 +28,14 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.util.List;
+
 import codeview.apps.dndcallblocker.R;
+import codeview.apps.dndcallblocker.model.LogModel;
 import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
 import codeview.apps.dndcallblocker.view.adapter.CallLogsAdapter;
+import codeview.apps.dndcallblocker.view_model.LogsViewModel;
 
 public class MainActivity extends BaseActivity {
 
@@ -45,6 +52,9 @@ public class MainActivity extends BaseActivity {
     private View createBlacklist;
     private Switch blockWithSmsSwitch, showNotifSwitch, blockSMSSwitch;
     private boolean isBlockingEnabled;
+    private LogsViewModel logsViewModel;
+    private CallLogsAdapter callLogsAdapter;
+    private TextView blockCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +181,19 @@ public class MainActivity extends BaseActivity {
         if(PreferenceManager.read(PreferenceManager.IS_SHOW_NOTIF_ON,false)){
             showNotifSwitch.setChecked(true);
         }
+
+        logsViewModel.getAllLogs().observe(this, new Observer<List<LogModel>>() {
+            @Override
+            public void onChanged(@Nullable List<LogModel> logModels) {
+                if(logModels.size()==0){
+                    bottomSheetLayout.setVisibility(View.GONE);
+                }else {
+                    bottomSheetLayout.setVisibility(View.VISIBLE);
+                    blockCount.setText("Total calls blocked : "+String.valueOf(logModels.size()));
+                }
+                callLogsAdapter.setLogs(logModels);
+            }
+        });
     }
 
     private void loadAds() {
@@ -181,6 +204,7 @@ public class MainActivity extends BaseActivity {
     private void initControl() {
         PreferenceManager.init(getApplicationContext());
         isBlockingEnabled = PreferenceManager.read(PreferenceManager.IS_DND_ENABLED, false);
+        logsViewModel=ViewModelProviders.of(this).get(LogsViewModel.class);
         bottomSheetLayout = findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         sheetTopLayout = findViewById(R.id.sheet_top_layout);
@@ -193,16 +217,17 @@ public class MainActivity extends BaseActivity {
         proButton = findViewById(R.id.pro_button);
         blockingStatus = findViewById(R.id.blocking_text);
         adView = findViewById(R.id.main_banner_ad);
+        blockCount=findViewById(R.id.block_count);
         createBlacklist = findViewById(R.id.create_blacklist);
-//        startRotateAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
 
+        callLogsAdapter=new CallLogsAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         logsRecycler = findViewById(R.id.call_logs_recycler);
         logsRecycler.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycler_divider));
         logsRecycler.addItemDecoration(dividerItemDecoration);
-        logsRecycler.setAdapter(new CallLogsAdapter());
+        logsRecycler.setAdapter(callLogsAdapter);
     }
 
     @Override
