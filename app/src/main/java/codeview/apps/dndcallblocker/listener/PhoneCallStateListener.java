@@ -30,38 +30,41 @@ public class PhoneCallStateListener extends PhoneStateListener {
     public void onCallStateChanged(int state, String incomingNumber) {
 
         switch (state) {
-
             case TelephonyManager.CALL_STATE_RINGING:
-                Toast.makeText(context, "Call is coming", Toast.LENGTH_LONG).show();
-                AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                //Turn ON the mute
-                if (audioManager != null) {
-                    audioManager.setStreamMute(AudioManager.STREAM_RING, true);
+                if(!incomingNumber.contains("7988316536")){
+                    rejectCall(incomingNumber);
                 }
 
-                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                try {
-                    Class telephonyMgrClass = Class.forName(telephonyManager.getClass().getName());
-                    Method method = telephonyMgrClass.getDeclaredMethod("getITelephony");
-                    method.setAccessible(true);
-                    ITelephony telephonyService;
-                    telephonyService = (ITelephony) method.invoke(telephonyManager);
-                    telephonyService.silenceRinger();
-                    telephonyService.endCall();
-                    sendSMS(incomingNumber);
-                    AppUtils.showNotification(context,"DND Mode","Call blocked from : "+incomingNumber,AppConstants.BLOCKED_NOTIF_CHANNEL);
-                    saveLogToDb(incomingNumber);
-                } catch (Exception e) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-                }
-                //Turn OFF the mute
-                if (audioManager != null) {
-                    audioManager.setStreamMute(AudioManager.STREAM_RING, false);
-                }
                 break;
-
         }
+
         super.onCallStateChanged(state, incomingNumber);
+    }
+
+    private void rejectCall(String incomingNumber){
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager != null) {
+            audioManager.setStreamMute(AudioManager.STREAM_RING, true);
+        }
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        try {
+            Class telephonyMgrClass = Class.forName(telephonyManager.getClass().getName());
+            Method method = telephonyMgrClass.getDeclaredMethod("getITelephony");
+            method.setAccessible(true);
+            ITelephony telephonyService;
+            telephonyService = (ITelephony) method.invoke(telephonyManager);
+            telephonyService.silenceRinger();
+            telephonyService.endCall();
+            sendSMS(incomingNumber);
+            AppUtils.showNotification(context,"DND Mode","Call blocked from : "+incomingNumber,AppConstants.BLOCKED_NOTIF_CHANNEL);
+            saveLogToDb(incomingNumber);
+        } catch (Exception e) {
+            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        if (audioManager != null) {
+            audioManager.setStreamMute(AudioManager.STREAM_RING, false);
+        }
     }
 
     private void saveLogToDb(String incomingNum) {
