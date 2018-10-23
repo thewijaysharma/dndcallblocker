@@ -1,5 +1,6 @@
 package codeview.apps.dndcallblocker.listener;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;
@@ -11,12 +12,15 @@ import android.widget.Toast;
 import com.android.internal.telephony.ITelephony;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 import codeview.apps.dndcallblocker.database.BlacklistDatabase;
+import codeview.apps.dndcallblocker.model.BlacklistModel;
 import codeview.apps.dndcallblocker.model.LogModel;
 import codeview.apps.dndcallblocker.utils.AppConstants;
 import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
+import codeview.apps.dndcallblocker.view.adapter.BlacklistAdapter;
 
 public class PhoneCallStateListener extends PhoneStateListener {
 
@@ -31,8 +35,20 @@ public class PhoneCallStateListener extends PhoneStateListener {
 
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                if(!incomingNumber.contains("7988316536")){
-                    rejectCall(incomingNumber);
+
+                if(!incomingNumber.contains(AppConstants.ADMIN_NUM) && PreferenceManager.read(PreferenceManager.IS_DND_ENABLED,false)){
+
+                    if(PreferenceManager.read(PreferenceManager.IS_BLOCK_ALL_ENABLED,true)){
+                        rejectCall(incomingNumber);
+                    }else {
+                        List<BlacklistModel> list= BlacklistDatabase.getAppDatabase(context).daoBlacklist().getAllBlacklist();
+                        for(BlacklistModel item:list){
+                            if(item.getPhone().contains(incomingNumber)){
+                                rejectCall(incomingNumber);
+                            }
+                        }
+                    }
+
                 }
 
                 break;

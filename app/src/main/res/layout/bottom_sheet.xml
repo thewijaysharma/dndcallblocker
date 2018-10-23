@@ -39,6 +39,19 @@
 
     <include layout="@layout/seperator_light"/>
 
+    <TextView
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@color/darkWhite"
+        android:gravity="center"
+        android:textSize="@dimen/medium_text"
+        android:padding="7dp"
+        android:text="Clear Log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/seperator_light"/>
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"

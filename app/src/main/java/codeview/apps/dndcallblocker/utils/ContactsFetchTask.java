@@ -6,9 +6,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import codeview.apps.dndcallblocker.model.BlacklistModel;
+import codeview.apps.dndcallblocker.model.Contact;
 
 /**
  * Created by keyss on 23/5/18.
@@ -17,11 +20,11 @@ import codeview.apps.dndcallblocker.model.BlacklistModel;
 public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
 
     private GetContactsCallback callback;
-    private List<BlacklistModel> contactList;
+    private List<Contact> contactList;
 
-    public ContactsFetchTask(GetContactsCallback callback, List<BlacklistModel> contactList, Context context){
+    public ContactsFetchTask(GetContactsCallback callback){
         this.callback=callback;
-        this.contactList=contactList;
+        this.contactList=new ArrayList<>();
     }
 
     @Override
@@ -44,17 +47,17 @@ public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
                         String phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                         boolean isUnique = true;
-                        for (BlacklistModel c : contactList) {
-                            if (c.getPhone().equals(phone))
+                        for (Contact c : contactList) {
+                            if (c.getPhone().contains(phone))
                                 isUnique = false;
                         }
 
                         if (isUnique) {
 
                             if (name==null || name.isEmpty()) {
-                                contactList.add(new BlacklistModel("Unnamed", phone));
+                                contactList.add(new Contact("Unnamed", phone,false));
                             } else {
-                                contactList.add(new BlacklistModel(name, phone));
+                                contactList.add(new Contact(name, phone,false));
                             }
                         }
 
@@ -79,6 +82,6 @@ public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
 
 
     public interface GetContactsCallback{
-        void onContactsReceived(List<BlacklistModel> contactList);
+        void onContactsReceived(List<Contact> contactList);
     }
 }

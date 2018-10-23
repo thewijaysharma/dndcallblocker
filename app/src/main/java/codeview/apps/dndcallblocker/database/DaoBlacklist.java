@@ -20,7 +20,10 @@ public interface DaoBlacklist {
     void insertBlacklist(BlacklistModel blacklistModel);
 
     @Query("SELECT * FROM blacklist")
-    LiveData<List<BlacklistModel>> getAllBlacklist();
+    LiveData<List<BlacklistModel>> getLiveBlacklist();
+
+    @Query("SELECT * FROM blacklist")
+    List<BlacklistModel> getAllBlacklist();
 
     @Delete
     void deleteItem(BlacklistModel blacklistModel);

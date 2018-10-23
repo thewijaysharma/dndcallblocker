@@ -19,7 +19,7 @@ public class Repository {
         BlacklistDatabase database = BlacklistDatabase.getAppDatabase(application);
         daoBlacklist = database.daoBlacklist();
         daoLogs=database.daoLogs();
-        allBlacklists = daoBlacklist.getAllBlacklist();
+        allBlacklists = daoBlacklist.getLiveBlacklist();
         allLogs=daoLogs.getAllLogs();
     }
 

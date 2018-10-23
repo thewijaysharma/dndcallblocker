@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 public class PreferenceManager {
     private static SharedPreferences sharedPreferences;
     public static final String IS_DND_ENABLED ="IS_DND_ENABLED";
+    public static final String IS_BLOCK_ALL_ENABLED ="IS_BLOCK_ALL_ENABLED";
     public static final String IS_FIRST_RUN="FIRST_RUN";
     public static final String IS_BLOCK_SMS_ON="IS_BLOCK_SMS_ON";
     public static final String SMS_TO_SEND="SMS_TO_SEND";

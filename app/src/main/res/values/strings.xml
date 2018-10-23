@@ -14,5 +14,6 @@
     <string name="block_incoming_sms">Block incoming SMS</string>
     <string name="block_call_with_sms">Block call with SMS</string>
     <string name="blacklist_numbers">Blacklist numbers</string>
+    <string name="save">Save</string>
 
 </resources>

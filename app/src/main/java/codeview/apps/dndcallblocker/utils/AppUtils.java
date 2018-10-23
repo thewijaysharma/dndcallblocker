@@ -14,12 +14,15 @@ import android.view.inputmethod.InputMethodManager;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 import codeview.apps.dndcallblocker.R;
 
 public class AppUtils {
+
 
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

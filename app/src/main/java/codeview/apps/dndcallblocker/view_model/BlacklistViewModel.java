@@ -35,6 +35,7 @@ public class BlacklistViewModel extends AndroidViewModel {
     public void deleteBlacklist(BlacklistModel blacklistModel){
         repository.deleteBlacklist(blacklistModel);
     }
+
     public void deleteAllBlacklist(){
         repository.deleteAllBlacklist();
     }

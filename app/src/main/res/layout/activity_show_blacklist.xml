@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parent_layout"
-    android:background="@drawable/background"
+    android:background="@color/darkWhite"
     tools:context="codeview.apps.dndcallblocker.view.activity.ShowBlacklistActivity">
 
     <LinearLayout
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content" />
 
                 <Switch
-                    android:id="@+id/block_with_sms_switch"
+                    android:id="@+id/block_all"
                     android:theme="@style/SwitchTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -53,13 +53,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+            <View
                 android:visibility="gone"
+                android:id="@+id/blacklist_filter"
+                android:background="@color/colorRipple"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <android.support.v7.widget.RecyclerView
+                tools:listitem="@layout/row_blacklist"
+                android:visibility="visible"
                 android:id="@+id/blacklist_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <TextView
+                android:visibility="gone"
+                android:id="@+id/no_blacklist_placeholder"
                 android:layout_margin="@dimen/margin_std"
                 android:gravity="center"
                 android:textSize="18sp"

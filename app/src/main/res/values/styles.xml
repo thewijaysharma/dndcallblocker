@@ -40,5 +40,6 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/lightGray</item>
+
     </style>
 </resources>

@@ -1,5 +1,6 @@
 package codeview.apps.dndcallblocker.view.activity;
 
+import android.app.AlarmManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -70,7 +71,6 @@ public class MainActivity extends BaseActivity {
                 toggleBlockingMode();
             }
         });
-
 
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -306,7 +306,6 @@ public class MainActivity extends BaseActivity {
     }
 
     public void toggleBottomSheet() {
-//        arrowUpDown.startAnimation(startRotateAnimation);
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {
