@@ -31,7 +31,5 @@
 bin/
 gen/
 *.dex
-*.apk
-*.ap_
 *.class
 Thumbs.db
