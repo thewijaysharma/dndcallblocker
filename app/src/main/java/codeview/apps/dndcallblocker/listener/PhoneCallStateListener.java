@@ -1,6 +1,4 @@
 package codeview.apps.dndcallblocker.listener;
-
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1078780651275",
+    "firebase_url": "https://dndcallblocker.firebaseio.com",
+    "project_id": "dndcallblocker",
+    "storage_bucket": "dndcallblocker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078780651275:android:fc44e172938b1373",
+        "android_client_info": {
+          "package_name": "codeview.apps.dndcallblocker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078780651275-97q5sogdpi3u1jrecns84v2uur9rvnk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "codeview.apps.dndcallblocker",
+            "certificate_hash": "25e4f5317742df36c83c0439c9caea09393aef8d"
+          }
+        },
+        {
+          "client_id": "1078780651275-lsm5k1rk5o62v16bu21qv4tbujihgo6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT1YvtP-5ioh5v7zSWXxtaNnV2iCABpiM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078780651275-lsm5k1rk5o62v16bu21qv4tbujihgo6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
