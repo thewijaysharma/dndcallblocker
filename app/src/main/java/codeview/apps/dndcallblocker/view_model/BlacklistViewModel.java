@@ -28,6 +28,7 @@ public class BlacklistViewModel extends AndroidViewModel {
     public void insertBlacklist(BlacklistModel blacklistModel){
         repository.insertBlacklist(blacklistModel);
     }
+
     public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels){
         repository.insertMultipleBlacklist(blacklistModels);
     }
