@@ -1,6 +1,5 @@
 package codeview.apps.dndcallblocker.utils;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,21 +9,20 @@ import android.provider.ContactsContract;
 import java.util.ArrayList;
 import java.util.List;
 
-import codeview.apps.dndcallblocker.model.BlacklistModel;
 import codeview.apps.dndcallblocker.model.Contact;
 
 /**
  * Created by keyss on 23/5/18.
  */
 
-public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
+public class ContactsFetchTask extends AsyncTask<Context, Void, Void> {
 
     private GetContactsCallback callback;
     private List<Contact> contactList;
 
-    public ContactsFetchTask(GetContactsCallback callback){
-        this.callback=callback;
-        this.contactList=new ArrayList<>();
+    public ContactsFetchTask(GetContactsCallback callback) {
+        this.callback = callback;
+        this.contactList = new ArrayList<>();
     }
 
     @Override
@@ -43,7 +41,7 @@ public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
                     Cursor pCur = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? ", new String[]{id}, null);
 
-                    while (pCur!=null && pCur.moveToNext()) {
+                    while (pCur != null && pCur.moveToNext()) {
                         String phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                         boolean isUnique = true;
@@ -54,10 +52,10 @@ public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
 
                         if (isUnique) {
 
-                            if (name==null || name.isEmpty()) {
-                                contactList.add(new Contact("Unnamed", phone,false));
+                            if (name == null || name.isEmpty()) {
+                                contactList.add(new Contact("Unnamed", phone, false));
                             } else {
-                                contactList.add(new Contact(name, phone,false));
+                                contactList.add(new Contact(name, phone, false));
                             }
                         }
 
@@ -81,7 +79,7 @@ public class ContactsFetchTask extends AsyncTask<Context,Void,Void> {
     }
 
 
-    public interface GetContactsCallback{
+    public interface GetContactsCallback {
         void onContactsReceived(List<Contact> contactList);
     }
 }

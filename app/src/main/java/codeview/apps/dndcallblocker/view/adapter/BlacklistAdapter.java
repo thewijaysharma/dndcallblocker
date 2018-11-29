@@ -13,7 +13,7 @@ import java.util.List;
 import codeview.apps.dndcallblocker.R;
 import codeview.apps.dndcallblocker.model.BlacklistModel;
 
-public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.ViewHolder> {
+public class BlacklistAdapter extends RecyclerView.Adapter<BlacklistAdapter.ViewHolder> {
 
     private List<BlacklistModel> blacklists;
 
@@ -24,16 +24,16 @@ public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.Vie
     @NonNull
     @Override
     public BlacklistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_blacklist,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_blacklist, parent, false);
         return new BlacklistAdapter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BlacklistAdapter.ViewHolder holder, int position) {
-        final BlacklistModel contact= blacklists.get(position);
+        final BlacklistModel contact = blacklists.get(position);
         holder.phoneNum.setText(contact.getPhone());
         holder.name.setText(contact.getName());
-        String initialChar=contact.getName().substring(0,1);
+        String initialChar = contact.getName().substring(0, 1);
         holder.initial.setText(initialChar.toUpperCase());
 
     }
@@ -43,16 +43,16 @@ public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.Vie
         return blacklists.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        TextView phoneNum,name, initial;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView phoneNum, name, initial;
         CheckBox checkBox;
 
         ViewHolder(View itemView) {
             super(itemView);
-            phoneNum=itemView.findViewById(R.id.contact_number);
-            name=itemView.findViewById(R.id.contact_name);
-            initial=itemView.findViewById(R.id.contact_initial);
-            checkBox=itemView.findViewById(R.id.checkbox);
+            phoneNum = itemView.findViewById(R.id.contact_number);
+            name = itemView.findViewById(R.id.contact_name);
+            initial = itemView.findViewById(R.id.contact_initial);
+            checkBox = itemView.findViewById(R.id.checkbox);
 
         }
     }

@@ -25,32 +25,32 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_contact,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_contact, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Contact contact=contacts.get(position);
+        final Contact contact = contacts.get(position);
         holder.phoneNum.setText(contact.getPhone());
         holder.name.setText(contact.getName());
-        String initialChar=contact.getName().substring(0,1);
+        String initialChar = contact.getName().substring(0, 1);
         holder.initial.setText(initialChar.toUpperCase());
 
-        if(contact.isBlacklisted()){
+        if (contact.isBlacklisted()) {
             holder.checkBox.setChecked(true);
-        }else {
+        } else {
             holder.checkBox.setChecked(false);
         }
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isPressed()){
+                if (buttonView.isPressed()) {
 
-                    if(isChecked){
+                    if (isChecked) {
                         contact.setBlacklisted(true);
-                    }else {
+                    } else {
                         contact.setBlacklisted(false);
                     }
 
@@ -65,16 +65,16 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         return contacts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        TextView phoneNum,name, initial;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView phoneNum, name, initial;
         CheckBox checkBox;
 
         ViewHolder(View itemView) {
             super(itemView);
-            phoneNum=itemView.findViewById(R.id.contact_number);
-            name=itemView.findViewById(R.id.contact_name);
-            initial=itemView.findViewById(R.id.contact_initial);
-            checkBox=itemView.findViewById(R.id.checkbox);
+            phoneNum = itemView.findViewById(R.id.contact_number);
+            name = itemView.findViewById(R.id.contact_name);
+            initial = itemView.findViewById(R.id.contact_initial);
+            checkBox = itemView.findViewById(R.id.checkbox);
 
         }
     }

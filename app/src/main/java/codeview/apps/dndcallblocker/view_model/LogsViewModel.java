@@ -17,21 +17,23 @@ public class LogsViewModel extends AndroidViewModel {
 
     public LogsViewModel(@NonNull Application application) {
         super(application);
-        repository=new Repository(application);
-        allLogs=repository.getAllLogs();
+        repository = new Repository(application);
+        allLogs = repository.getAllLogs();
     }
 
-    public void insertLog(LogModel logModel){
+    public void insertLog(LogModel logModel) {
         repository.insertLog(logModel);
     }
-    public void deleteLog(LogModel logModel){
+
+    public void deleteLog(LogModel logModel) {
         repository.deleteLog(logModel);
     }
-    public void deleteAllLogs(){
+
+    public void deleteAllLogs() {
         repository.deleteAllLogs();
     }
 
-    public LiveData<List<LogModel>> getAllLogs(){
+    public LiveData<List<LogModel>> getAllLogs() {
         return allLogs;
     }
 }

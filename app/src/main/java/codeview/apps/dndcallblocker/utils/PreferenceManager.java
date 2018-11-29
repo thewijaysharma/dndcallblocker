@@ -5,14 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PreferenceManager {
+    public static final String IS_DND_ENABLED = "IS_DND_ENABLED";
+    public static final String IS_BLOCK_ALL_ENABLED = "IS_BLOCK_ALL_ENABLED";
+    public static final String IS_FIRST_RUN = "FIRST_RUN";
+    public static final String IS_BLOCK_SMS_ON = "IS_BLOCK_SMS_ON";
+    public static final String SMS_TO_SEND = "SMS_TO_SEND";
+    public static final String IS_BLOCK_WITH_SMS_ON = "IS_BLOCK_WITH_SMS_ON";
+    public static final String IS_SHOW_NOTIF_ON = "IS_SHOW_NOTIF_ON";
     private static SharedPreferences sharedPreferences;
-    public static final String IS_DND_ENABLED ="IS_DND_ENABLED";
-    public static final String IS_BLOCK_ALL_ENABLED ="IS_BLOCK_ALL_ENABLED";
-    public static final String IS_FIRST_RUN="FIRST_RUN";
-    public static final String IS_BLOCK_SMS_ON="IS_BLOCK_SMS_ON";
-    public static final String SMS_TO_SEND="SMS_TO_SEND";
-    public static final String IS_BLOCK_WITH_SMS_ON="IS_BLOCK_WITH_SMS_ON";
-    public static final String IS_SHOW_NOTIF_ON="IS_SHOW_NOTIF_ON";
 
     private PreferenceManager() {
     }
@@ -51,8 +51,8 @@ public class PreferenceManager {
         prefsEditor.putInt(key, value).apply();
     }
 
-    public static void clearPreferences(){
-        SharedPreferences.Editor prefEditor=sharedPreferences.edit();
+    public static void clearPreferences() {
+        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
         prefEditor.clear().apply();
     }
 }

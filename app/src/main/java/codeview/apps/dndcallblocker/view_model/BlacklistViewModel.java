@@ -17,27 +17,27 @@ public class BlacklistViewModel extends AndroidViewModel {
 
     public BlacklistViewModel(@NonNull Application application) {
         super(application);
-        repository=new Repository(application);
-        allBlacklists=repository.getAllBlacklists();
+        repository = new Repository(application);
+        allBlacklists = repository.getAllBlacklists();
     }
 
-    public LiveData<List<BlacklistModel>> getAllBlacklists(){
+    public LiveData<List<BlacklistModel>> getAllBlacklists() {
         return allBlacklists;
     }
 
-    public void insertBlacklist(BlacklistModel blacklistModel){
+    public void insertBlacklist(BlacklistModel blacklistModel) {
         repository.insertBlacklist(blacklistModel);
     }
 
-    public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels){
+    public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels) {
         repository.insertMultipleBlacklist(blacklistModels);
     }
 
-    public void deleteBlacklist(BlacklistModel blacklistModel){
+    public void deleteBlacklist(BlacklistModel blacklistModel) {
         repository.deleteBlacklist(blacklistModel);
     }
 
-    public void deleteAllBlacklist(){
+    public void deleteAllBlacklist() {
         repository.deleteAllBlacklist();
     }
 

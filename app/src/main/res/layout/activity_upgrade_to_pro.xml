@@ -1,61 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:orientation="vertical"
     tools:context="codeview.apps.dndcallblocker.view.activity.UpgradeToProActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/crown_bigger"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/crown_bigger" />
 
         <TextView
-            android:fontFamily="@font/barlow_semibold"
-            android:drawablePadding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_std"
-            android:layout_marginEnd="@dimen/margin_std"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/margin_std"
             android:layout_marginBottom="10dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/barlow_semibold"
             android:gravity="center_horizontal"
-            android:textSize="19sp"
-            android:textColor="@color/colorPrimaryDark"
             android:text="Enjoy Pro features with DND Pro and get rid of all the ads"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp" />
 
         <Button
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:fontFamily="@font/barlow_semibold_italic"
-            android:textColor="@color/colorWhite"
-            android:text="3 months @ RS. 30"
-            android:background="@drawable/pro_button_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_std"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/pro_button_bg"
+            android:fontFamily="@font/barlow_semibold_italic"
+            android:text="3 months @ RS. 30"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
 
         <Button
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:fontFamily="@font/barlow_semibold_italic"
-            android:textColor="@color/colorWhite"
-            android:text="Lifetime @ RS. 100"
-            android:background="@drawable/pro_button_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_std"
             android:layout_marginEnd="@dimen/margin_std"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/pro_button_bg"
+            android:fontFamily="@font/barlow_semibold_italic"
+            android:text="Lifetime @ RS. 100"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
 
 
     </LinearLayout>

@@ -1,63 +1,63 @@
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:layout_behavior="@string/bottom_sheet_behavior"
-    app:behavior_peekHeight="54dp"
     android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    app:behavior_peekHeight="54dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
-    <include layout="@layout/seperator_light"/>
+    <include layout="@layout/seperator_light" />
 
     <LinearLayout
         android:id="@+id/sheet_top_layout"
-        android:gravity="center_vertical"
-        android:padding="12dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp"
         tools:ignore="UseCompoundDrawables">
 
         <TextView
             android:id="@+id/block_count"
-            android:layout_weight="1"
-            android:textSize="17sp"
-            android:text="Calls Blocked : 10"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Calls Blocked : 10"
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/arrow_up_down"
-            android:src="@drawable/arrow_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="Slide bottom sheet" />
+            android:contentDescription="Slide bottom sheet"
+            android:src="@drawable/arrow_top" />
 
     </LinearLayout>
 
-    <include layout="@layout/seperator_light"/>
+    <include layout="@layout/seperator_light" />
 
     <TextView
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/darkWhite"
         android:gravity="center"
-        android:textSize="@dimen/medium_text"
-        android:padding="7dp"
+        android:padding="10dp"
         android:text="Clear Log"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/medium_text" />
 
-    <include layout="@layout/seperator_light"/>
+    <include layout="@layout/seperator_light" />
 
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/call_logs_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:id="@+id/call_logs_recycler"
-        tools:listitem="@layout/row_call_log"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        tools:listitem="@layout/row_call_log" />
 
 </LinearLayout>

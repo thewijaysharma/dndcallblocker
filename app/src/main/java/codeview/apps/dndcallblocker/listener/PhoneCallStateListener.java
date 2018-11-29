@@ -1,4 +1,5 @@
 package codeview.apps.dndcallblocker.listener;
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.telephony.PhoneStateListener;
@@ -18,12 +19,12 @@ import codeview.apps.dndcallblocker.model.LogModel;
 import codeview.apps.dndcallblocker.utils.AppConstants;
 import codeview.apps.dndcallblocker.utils.AppUtils;
 import codeview.apps.dndcallblocker.utils.PreferenceManager;
-import codeview.apps.dndcallblocker.view.adapter.BlacklistAdapter;
 
 public class PhoneCallStateListener extends PhoneStateListener {
 
+    private static final String TAG = PhoneCallStateListener.class.getSimpleName();
     private Context context;
-    private static final String TAG=PhoneCallStateListener.class.getSimpleName();
+
     public PhoneCallStateListener(Context context) {
         this.context = context;
     }
@@ -34,14 +35,14 @@ public class PhoneCallStateListener extends PhoneStateListener {
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
 
-                if(!incomingNumber.contains(AppConstants.ADMIN_NUM) && PreferenceManager.read(PreferenceManager.IS_DND_ENABLED,false)){
+                if (!incomingNumber.contains(AppConstants.ADMIN_NUM) && PreferenceManager.read(PreferenceManager.IS_DND_ENABLED, false)) {
 
-                    if(PreferenceManager.read(PreferenceManager.IS_BLOCK_ALL_ENABLED,true)){
+                    if (PreferenceManager.read(PreferenceManager.IS_BLOCK_ALL_ENABLED, true)) {
                         rejectCall(incomingNumber);
-                    }else {
-                        List<BlacklistModel> list= BlacklistDatabase.getAppDatabase(context).daoBlacklist().getAllBlacklist();
-                        for(BlacklistModel item:list){
-                            if(item.getPhone().contains(incomingNumber)){
+                    } else {
+                        List<BlacklistModel> list = BlacklistDatabase.getAppDatabase(context).daoBlacklist().getAllBlacklist();
+                        for (BlacklistModel item : list) {
+                            if (item.getPhone().contains(incomingNumber)) {
                                 rejectCall(incomingNumber);
                             }
                         }
@@ -55,7 +56,7 @@ public class PhoneCallStateListener extends PhoneStateListener {
         super.onCallStateChanged(state, incomingNumber);
     }
 
-    private void rejectCall(String incomingNumber){
+    private void rejectCall(String incomingNumber) {
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         if (audioManager != null) {
             audioManager.setStreamMute(AudioManager.STREAM_RING, true);
@@ -70,7 +71,7 @@ public class PhoneCallStateListener extends PhoneStateListener {
             telephonyService.silenceRinger();
             telephonyService.endCall();
             sendSMS(incomingNumber);
-            AppUtils.showNotification(context,"DND Mode","Call blocked from : "+incomingNumber,AppConstants.BLOCKED_NOTIF_CHANNEL);
+            AppUtils.showNotification(context, "DND Mode", "Call blocked from : " + incomingNumber, AppConstants.BLOCKED_NOTIF_CHANNEL);
             saveLogToDb(incomingNumber);
         } catch (Exception e) {
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
@@ -82,19 +83,19 @@ public class PhoneCallStateListener extends PhoneStateListener {
     }
 
     private void saveLogToDb(String incomingNum) {
-        LogModel logModel=new LogModel(incomingNum,AppUtils.getCurrentTime(),false);
+        LogModel logModel = new LogModel(incomingNum, AppUtils.getCurrentTime(), false);
         BlacklistDatabase.getAppDatabase(context).daoLogs().insertLog(logModel);
     }
 
 
     private void sendSMS(String phoneNo) {
-        boolean isBlockWithSmsOn=PreferenceManager.read(PreferenceManager.IS_BLOCK_WITH_SMS_ON,false);
-        if(isBlockWithSmsOn){
+        boolean isBlockWithSmsOn = PreferenceManager.read(PreferenceManager.IS_BLOCK_WITH_SMS_ON, false);
+        if (isBlockWithSmsOn) {
             try {
-                String msgContent=PreferenceManager.read(PreferenceManager.SMS_TO_SEND,"Sorry busy right now. Will call you back soon.");
+                String msgContent = PreferenceManager.read(PreferenceManager.SMS_TO_SEND, "Sorry busy right now. Will call you back soon.");
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNo, null, msgContent, null, null);
-                Log.d(TAG, "sms sent to "+phoneNo);
+                Log.d(TAG, "sms sent to " + phoneNo);
             } catch (Exception ex) {
                 Log.d(TAG, "sms sending failed");
                 ex.printStackTrace();

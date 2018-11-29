@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="?attr/selectableItemBackgroundBorderless"
+    android:orientation="horizontal"
     android:padding="10dp">
 
     <TextView
@@ -18,10 +17,10 @@
         android:layout_gravity="center"
         android:background="@drawable/empty_circle"
         android:gravity="center"
-        android:textSize="@dimen/large_text"
         android:includeFontPadding="false"
         android:text="V"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/large_text" />
 
 
     <TextView

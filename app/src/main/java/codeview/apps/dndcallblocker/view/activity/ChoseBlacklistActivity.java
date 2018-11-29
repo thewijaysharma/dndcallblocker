@@ -1,27 +1,16 @@
 package codeview.apps.dndcallblocker.view.activity;
 
-import android.Manifest;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.CursorLoader;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.CallLog;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import codeview.apps.dndcallblocker.R;
@@ -33,11 +22,11 @@ import codeview.apps.dndcallblocker.view_model.BlacklistViewModel;
 
 public class ChoseBlacklistActivity extends BaseActivity implements ContactsFetchTask.GetContactsCallback {
 
+    private final int CALL_LOG_LOADER = 1;
+    private final int CONTACTS_LOADER = 2;
     private RecyclerView recyclerView;
     private ContactsAdapter adapter;
     private ProgressBar progressBar;
-    private final int CALL_LOG_LOADER=1;
-    private final int CONTACTS_LOADER=2;
     private boolean isSaved = true;
     private List<Contact> contacts;
     private BlacklistViewModel blacklistViewModel;
@@ -105,30 +94,30 @@ public class ChoseBlacklistActivity extends BaseActivity implements ContactsFetc
 
     private void initControl() {
 //        getLoaderManager().initLoader(CALL_LOG_LOADER,null,ChoseBlacklistActivity.this);
-        recyclerView=findViewById(R.id.contact_list);
-        progressBar=findViewById(R.id.progress_bar);
-        contacts=new ArrayList<>();
-        adapter=new ContactsAdapter(contacts);
+        recyclerView = findViewById(R.id.contact_list);
+        progressBar = findViewById(R.id.progress_bar);
+        contacts = new ArrayList<>();
+        adapter = new ContactsAdapter(contacts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycler_divider));
         recyclerView.addItemDecoration(dividerItemDecoration);
-        blacklistViewModel= ViewModelProviders.of(this).get(BlacklistViewModel.class);
+        blacklistViewModel = ViewModelProviders.of(this).get(BlacklistViewModel.class);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save_menu,menu);
+        getMenuInflater().inflate(R.menu.save_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.save){
-            for(Contact contact:contacts){
-                if(contact.isBlacklisted()){
-                    blacklistViewModel.insertBlacklist(new BlacklistModel(contact.getName(),contact.getPhone()));
+        if (item.getItemId() == R.id.save) {
+            for (Contact contact : contacts) {
+                if (contact.isBlacklisted()) {
+                    blacklistViewModel.insertBlacklist(new BlacklistModel(contact.getName(), contact.getPhone()));
                 }
             }
             showToast("Blacklist saved");

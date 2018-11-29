@@ -54,8 +54,8 @@
             android:name=".view.activity.ShowBlacklistActivity"
             android:label="Blacklist numbers" />
         <activity
-            android:label="Chose blacklist numbers"
-            android:name=".view.activity.ChoseBlacklistActivity"/>
+            android:name=".view.activity.ChoseBlacklistActivity"
+            android:label="Chose blacklist numbers" />
     </application>
 
 </manifest>

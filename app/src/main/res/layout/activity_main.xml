@@ -1,159 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:id="@+id/parent_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    tools:context="codeview.apps.dndcallblocker.view.activity.MainActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="codeview.apps.dndcallblocker.view.activity.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/pro_button"
-                android:padding="5dp"
-                android:layout_gravity="end"
-                android:layout_margin="16dp"
-                android:src="@drawable/crown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/upgrade_to_pro" />
+                android:contentDescription="@string/upgrade_to_pro"
+                android:padding="5dp"
+                android:src="@drawable/crown" />
 
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/green_power_button"
                     android:id="@+id/dnd_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless" />
+                    android:layout_gravity="center_horizontal"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/green_power_button" />
 
                 <TextView
-                    android:fontFamily="@font/barlow_bold"
-                    android:textColor="@color/colorPrimary"
                     android:id="@+id/blocking_text"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Blocking mode is disabled"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/barlow_bold"
+                    android:text="Blocking mode is disabled"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
 
                 <android.support.v7.widget.CardView
-                    android:layout_marginTop="24dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    app:cardBackgroundColor="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="5dp"
+                    app:cardBackgroundColor="@color/colorWhite">
 
                     <LinearLayout
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/margin_std"
-                        android:paddingEnd="@dimen/margin_std"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/margin_std"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="@dimen/margin_std"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:textSize="18sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/show_notifications"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
 
                         <Switch
                             android:id="@+id/show_notif_switch"
-                            android:theme="@style/SwitchTheme"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SwitchTheme" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    app:cardBackgroundColor="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:cardBackgroundColor="@color/colorWhite">
 
                     <LinearLayout
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/margin_std"
-                        android:paddingEnd="@dimen/margin_std"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/margin_std"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="@dimen/margin_std"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:textSize="18sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/block_incoming_sms"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
 
                         <Switch
                             android:id="@+id/block_incoming_sms_switch"
-                            android:theme="@style/SwitchTheme"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SwitchTheme" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    app:cardBackgroundColor="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:cardBackgroundColor="@color/colorWhite">
 
                     <LinearLayout
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/margin_std"
-                        android:paddingEnd="@dimen/margin_std"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/margin_std"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="@dimen/margin_std"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:textSize="18sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/block_call_with_sms"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
+                            android:textSize="18sp" />
 
                         <Switch
                             android:id="@+id/block_with_sms_switch"
-                            android:theme="@style/SwitchTheme"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:theme="@style/SwitchTheme" />
 
                     </LinearLayout>
 
@@ -161,47 +161,46 @@
 
                 <com.google.android.gms.ads.AdView
                     android:id="@+id/main_banner_ad"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center_horizontal"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="@string/main_screen_banner"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/main_screen_banner" />
 
                 <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    app:cardBackgroundColor="@color/colorWhite">
 
                     <LinearLayout
                         android:id="@+id/create_blacklist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/margin_std"
-                        android:paddingEnd="@dimen/margin_std"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:paddingStart="@dimen/margin_std"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="@dimen/margin_std"
+                        android:paddingBottom="10dp">
 
                         <TextView
-                            android:textSize="18sp"
-                            android:layout_weight="1"
-                            android:drawableEnd="@drawable/arrow_right"
-                            android:text="@string/blacklist_numbers"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:drawableRight="@drawable/arrow_right" />
+                            android:layout_weight="1"
+                            android:drawableEnd="@drawable/arrow_right"
+                            android:drawableRight="@drawable/arrow_right"
+                            android:text="@string/blacklist_numbers"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
 
 
             </LinearLayout>
@@ -210,7 +209,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/bottom_sheet"/>
+    <include layout="@layout/bottom_sheet" />
 
 
 </android.support.design.widget.CoordinatorLayout>

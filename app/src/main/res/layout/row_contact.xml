@@ -17,10 +17,10 @@
         android:layout_gravity="center"
         android:background="@drawable/empty_circle"
         android:gravity="center"
-        android:textSize="@dimen/large_text"
         android:includeFontPadding="false"
         android:text="V"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/large_text" />
 
 
     <TextView
@@ -53,12 +53,12 @@
 
     <CheckBox
         android:id="@+id/checkbox"
-        android:layout_marginEnd="5dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp" />
 
 

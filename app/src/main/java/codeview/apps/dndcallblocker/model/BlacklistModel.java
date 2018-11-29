@@ -4,8 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.sql.Time;
-
 /**
  * Created by Wijay on 4/10/2018.
  */

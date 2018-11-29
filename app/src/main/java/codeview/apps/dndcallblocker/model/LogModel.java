@@ -8,21 +8,18 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "logs_table")
 public class LogModel {
 
+    public static int count;
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String name;
     @NonNull
     private String phone;
     @NonNull
     private String blockedTime;
-
     private boolean isSms;
 
-    public static int count;
-
-    public LogModel(String name,@NonNull String phone, @NonNull String blockedTime, boolean isSms) {
-        this.name=name;
+    public LogModel(String name, @NonNull String phone, @NonNull String blockedTime, boolean isSms) {
+        this.name = name;
         this.phone = phone;
         this.blockedTime = blockedTime;
         this.isSms = isSms;
@@ -32,9 +29,8 @@ public class LogModel {
     public LogModel(@NonNull String phone, @NonNull String blockedTime, boolean isSms) {
         this.phone = phone;
         this.blockedTime = blockedTime;
-        this.isSms=isSms;
+        this.isSms = isSms;
     }
-
 
 
     public int getId() {

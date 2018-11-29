@@ -60,12 +60,12 @@ public class ShowBlacklistActivity extends BaseActivity {
         blockAllSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isPressed()){
-                    if(isChecked){
-                        PreferenceManager.write(PreferenceManager.IS_BLOCK_ALL_ENABLED,true);
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
+                        PreferenceManager.write(PreferenceManager.IS_BLOCK_ALL_ENABLED, true);
                         filter.setVisibility(View.VISIBLE);
-                    }else {
-                        PreferenceManager.write(PreferenceManager.IS_BLOCK_ALL_ENABLED,false);
+                    } else {
+                        PreferenceManager.write(PreferenceManager.IS_BLOCK_ALL_ENABLED, false);
                         filter.setVisibility(View.GONE);
 
                     }
@@ -76,10 +76,10 @@ public class ShowBlacklistActivity extends BaseActivity {
     }
 
     private void setViews() {
-        if(PreferenceManager.read(PreferenceManager.IS_BLOCK_ALL_ENABLED,true)){
+        if (PreferenceManager.read(PreferenceManager.IS_BLOCK_ALL_ENABLED, true)) {
             blockAllSwitch.setChecked(true);
             filter.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             blockAllSwitch.setChecked(false);
             filter.setVisibility(View.GONE);
         }
@@ -87,13 +87,13 @@ public class ShowBlacklistActivity extends BaseActivity {
         viewModel.getAllBlacklists().observe(this, new Observer<List<BlacklistModel>>() {
             @Override
             public void onChanged(@Nullable List<BlacklistModel> blacklistModelList) {
-                if(blacklistModelList.size()>0){
+                if (blacklistModelList.size() > 0) {
                     noListPlacehoder.setVisibility(View.GONE);
 
                     blacklistModels.clear();
                     blacklistModels.addAll(blacklistModelList);
                     adapter.notifyDataSetChanged();
-                }else {
+                } else {
                     noListPlacehoder.setVisibility(View.VISIBLE);
                 }
 
@@ -103,15 +103,15 @@ public class ShowBlacklistActivity extends BaseActivity {
     }
 
     private void initViews() {
-        viewModel=ViewModelProviders.of(this).get(BlacklistViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(BlacklistViewModel.class);
         fab = findViewById(R.id.add_blacklist_fab);
-        blockAllSwitch=findViewById(R.id.block_all);
+        blockAllSwitch = findViewById(R.id.block_all);
         parentView = findViewById(R.id.parent_layout);
-        noListPlacehoder=findViewById(R.id.no_blacklist_placeholder);
-        recyclerView=findViewById(R.id.blacklist_recycler);
-        filter=findViewById(R.id.blacklist_filter);
-        blacklistModels=new ArrayList<>();
-        adapter=new BlacklistAdapter(blacklistModels);
+        noListPlacehoder = findViewById(R.id.no_blacklist_placeholder);
+        recyclerView = findViewById(R.id.blacklist_recycler);
+        filter = findViewById(R.id.blacklist_filter);
+        blacklistModels = new ArrayList<>();
+        adapter = new BlacklistAdapter(blacklistModels);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -137,7 +137,7 @@ public class ShowBlacklistActivity extends BaseActivity {
                     break;
                     case 1:
                         addBlacklistDialog();
-                    break;
+                        break;
                 }
             }
         });
@@ -165,7 +165,7 @@ public class ShowBlacklistActivity extends BaseActivity {
         nameEt.setHintTextColor(getResources().getColor(R.color.veryLightGray));
         layout.addView(nameEt);
 
-        final AlertDialog dialog = new AlertDialog.Builder(this,R.style.AlertDialogStyle)
+        final AlertDialog dialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle)
                 .setView(layout)
                 .setTitle("Add new blacklist")
                 .setPositiveButton(android.R.string.ok, null) //Set to null. We override the onclick
@@ -185,11 +185,11 @@ public class ShowBlacklistActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         String number = numberEt.getText().toString();
-                        String name=nameEt.getText().toString().isEmpty()?"Unnamed":nameEt.getText().toString();
-                        if(number.isEmpty()){
+                        String name = nameEt.getText().toString().isEmpty() ? "Unnamed" : nameEt.getText().toString();
+                        if (number.isEmpty()) {
                             showToast("Number cannot be empty");
-                        }else {
-                            viewModel.insertBlacklist(new BlacklistModel(name,number));
+                        } else {
+                            viewModel.insertBlacklist(new BlacklistModel(name, number));
                             dialog.dismiss();
                         }
                     }

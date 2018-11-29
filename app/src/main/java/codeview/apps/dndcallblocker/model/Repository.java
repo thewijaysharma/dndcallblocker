@@ -3,7 +3,9 @@ package codeview.apps.dndcallblocker.model;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+
 import java.util.List;
+
 import codeview.apps.dndcallblocker.database.BlacklistDatabase;
 import codeview.apps.dndcallblocker.database.DaoBlacklist;
 import codeview.apps.dndcallblocker.database.DaoLogs;
@@ -18,16 +20,16 @@ public class Repository {
     public Repository(Application application) {
         BlacklistDatabase database = BlacklistDatabase.getAppDatabase(application);
         daoBlacklist = database.daoBlacklist();
-        daoLogs=database.daoLogs();
+        daoLogs = database.daoLogs();
         allBlacklists = daoBlacklist.getLiveBlacklist();
-        allLogs=daoLogs.getAllLogs();
+        allLogs = daoLogs.getAllLogs();
     }
 
     public void insertBlacklist(BlacklistModel blacklistModel) {
         daoBlacklist.insertBlacklist(blacklistModel);
     }
 
-    public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels){
+    public void insertMultipleBlacklist(List<BlacklistModel> blacklistModels) {
         daoBlacklist.insertMultipleBlacklist(blacklistModels);
     }
 
@@ -35,7 +37,7 @@ public class Repository {
         daoLogs.insertLog(logModel);
     }
 
-    public void insertMultipleLogs(List<LogModel> logModels){
+    public void insertMultipleLogs(List<LogModel> logModels) {
         daoLogs.insertMultipleLogs(logModels);
     }
 
@@ -73,7 +75,8 @@ public class Repository {
         @Override
         protected Void doInBackground(Void... voids) {
             daoBlacklist.deleteAll();
-            return null;        }
+            return null;
+        }
     }
 
     private static class DeleteAllLogsTask extends AsyncTask<Void, Void, Void> {

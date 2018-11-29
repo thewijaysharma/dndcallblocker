@@ -1,6 +1,5 @@
 package codeview.apps.dndcallblocker.view.activity;
 
-import android.app.AlarmManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -13,7 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.InputFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -101,11 +99,11 @@ public class MainActivity extends BaseActivity {
         showNotifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isPressed()){
-                    if(isChecked){
-                        PreferenceManager.write(PreferenceManager.IS_SHOW_NOTIF_ON,true);
-                    }else {
-                        PreferenceManager.write(PreferenceManager.IS_SHOW_NOTIF_ON,false);
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
+                        PreferenceManager.write(PreferenceManager.IS_SHOW_NOTIF_ON, true);
+                    } else {
+                        PreferenceManager.write(PreferenceManager.IS_SHOW_NOTIF_ON, false);
                     }
                 }
             }
@@ -114,11 +112,11 @@ public class MainActivity extends BaseActivity {
         blockSMSSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isPressed()){
-                    if(isChecked){
-                        PreferenceManager.write(PreferenceManager.IS_BLOCK_SMS_ON,true);
-                    }else {
-                        PreferenceManager.write(PreferenceManager.IS_BLOCK_SMS_ON,false);
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
+                        PreferenceManager.write(PreferenceManager.IS_BLOCK_SMS_ON, true);
+                    } else {
+                        PreferenceManager.write(PreferenceManager.IS_BLOCK_SMS_ON, false);
                     }
                 }
             }
@@ -127,16 +125,15 @@ public class MainActivity extends BaseActivity {
         blockWithSmsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(buttonView.isPressed()){
-                    if(isChecked){
+                if (buttonView.isPressed()) {
+                    if (isChecked) {
                         showDialogForMessage();
-                    }else {
-                        PreferenceManager.write(PreferenceManager.IS_BLOCK_WITH_SMS_ON,false);
+                    } else {
+                        PreferenceManager.write(PreferenceManager.IS_BLOCK_WITH_SMS_ON, false);
                     }
                 }
             }
         });
-
 
 
         createBlacklist.setOnClickListener(new View.OnClickListener() {
@@ -172,24 +169,24 @@ public class MainActivity extends BaseActivity {
             blockingStatus.setText("Blocking mode is disabled");
         }
 
-        if(PreferenceManager.read(PreferenceManager.IS_BLOCK_WITH_SMS_ON,false)){
+        if (PreferenceManager.read(PreferenceManager.IS_BLOCK_WITH_SMS_ON, false)) {
             blockWithSmsSwitch.setChecked(true);
         }
-        if(PreferenceManager.read(PreferenceManager.IS_BLOCK_SMS_ON,false)){
+        if (PreferenceManager.read(PreferenceManager.IS_BLOCK_SMS_ON, false)) {
             blockSMSSwitch.setChecked(true);
         }
-        if(PreferenceManager.read(PreferenceManager.IS_SHOW_NOTIF_ON,false)){
+        if (PreferenceManager.read(PreferenceManager.IS_SHOW_NOTIF_ON, false)) {
             showNotifSwitch.setChecked(true);
         }
 
         logsViewModel.getAllLogs().observe(this, new Observer<List<LogModel>>() {
             @Override
             public void onChanged(@Nullable List<LogModel> logModels) {
-                if(logModels.size()==0){
+                if (logModels.size() == 0) {
                     bottomSheetLayout.setVisibility(View.GONE);
-                }else {
+                } else {
                     bottomSheetLayout.setVisibility(View.VISIBLE);
-                    blockCount.setText("Total calls blocked : "+String.valueOf(logModels.size()));
+                    blockCount.setText("Total calls blocked : " + String.valueOf(logModels.size()));
                 }
                 callLogsAdapter.setLogs(logModels);
             }
@@ -204,7 +201,7 @@ public class MainActivity extends BaseActivity {
     private void initControl() {
         PreferenceManager.init(getApplicationContext());
         isBlockingEnabled = PreferenceManager.read(PreferenceManager.IS_DND_ENABLED, false);
-        logsViewModel=ViewModelProviders.of(this).get(LogsViewModel.class);
+        logsViewModel = ViewModelProviders.of(this).get(LogsViewModel.class);
         bottomSheetLayout = findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         sheetTopLayout = findViewById(R.id.sheet_top_layout);
@@ -217,10 +214,10 @@ public class MainActivity extends BaseActivity {
         proButton = findViewById(R.id.pro_button);
         blockingStatus = findViewById(R.id.blocking_text);
         adView = findViewById(R.id.main_banner_ad);
-        blockCount=findViewById(R.id.block_count);
+        blockCount = findViewById(R.id.block_count);
         createBlacklist = findViewById(R.id.create_blacklist);
 
-        callLogsAdapter=new CallLogsAdapter();
+        callLogsAdapter = new CallLogsAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         logsRecycler = findViewById(R.id.call_logs_recycler);
         logsRecycler.setLayoutManager(layoutManager);
@@ -253,7 +250,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showDialogForMessage() {
-        String smsToSend=PreferenceManager.read(PreferenceManager.SMS_TO_SEND,"");
+        String smsToSend = PreferenceManager.read(PreferenceManager.SMS_TO_SEND, "");
         final EditText edittext = new EditText(this);
         edittext.setText(smsToSend);
         edittext.setHint("I am busy right now. Will call you back soon");
@@ -264,7 +261,7 @@ public class MainActivity extends BaseActivity {
         edittext.setFilters(filterArray);
         edittext.setSelection(smsToSend.length());
 
-        final AlertDialog dialog = new AlertDialog.Builder(this,R.style.AlertDialogStyle)
+        final AlertDialog dialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle)
                 .setView(edittext)
                 .setTitle("Enter Message")
                 .setPositiveButton(android.R.string.ok, null) //Set to null. We override the onclick
@@ -283,11 +280,11 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         String customMsg = edittext.getText().toString();
-                        if(customMsg.isEmpty()){
+                        if (customMsg.isEmpty()) {
                             showToast("Message cannot be empty");
-                        }else {
-                            PreferenceManager.write(PreferenceManager.SMS_TO_SEND,customMsg);
-                            PreferenceManager.write(PreferenceManager.IS_BLOCK_WITH_SMS_ON,true);
+                        } else {
+                            PreferenceManager.write(PreferenceManager.SMS_TO_SEND, customMsg);
+                            PreferenceManager.write(PreferenceManager.IS_BLOCK_WITH_SMS_ON, true);
                             dialog.dismiss();
                         }
                     }

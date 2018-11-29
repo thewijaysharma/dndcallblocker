@@ -1,13 +1,10 @@
 package codeview.apps.dndcallblocker.receiver;
 
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
-import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -49,7 +46,7 @@ public class CallReceiver extends BroadcastReceiver {
             boolean isDndEnabled = PreferenceManager.read(PreferenceManager.IS_DND_ENABLED, false);
             boolean isBlockSmsOn = PreferenceManager.read(PreferenceManager.IS_BLOCK_SMS_ON, false);
             Bundle bundle = intent.getExtras();
-            String phoneNumber= "";
+            String phoneNumber = "";
             if (bundle != null) {
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
 
@@ -62,10 +59,9 @@ public class CallReceiver extends BroadcastReceiver {
             }
 
 
-
             if (isDndEnabled && isBlockSmsOn) {
                 abortBroadcast();
-                AppUtils.showNotification(context, "DND Mode", "SMS blocked from "+phoneNumber, AppConstants.BLOCKED_NOTIF_CHANNEL);
+                AppUtils.showNotification(context, "DND Mode", "SMS blocked from " + phoneNumber, AppConstants.BLOCKED_NOTIF_CHANNEL);
             }
         }
 

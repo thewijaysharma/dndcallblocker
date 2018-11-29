@@ -2,11 +2,11 @@ package codeview.apps.dndcallblocker.view.activity;
 
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -20,27 +20,27 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void showToast(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    protected void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    protected void showSnackbar(String msg, View parentView){
+    protected void showSnackbar(String msg, View parentView) {
         Snackbar snackbar = Snackbar.make(parentView, msg, Snackbar.LENGTH_LONG);
 
         snackbar.show();
     }
 
-    protected void showActionBar(){
-        ActionBar mActionBar=getSupportActionBar();
-        if(mActionBar!=null){
+    protected void showActionBar() {
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setDisplayShowHomeEnabled(true);
         }
     }
 
-    protected void showActionBar(String title){
-        ActionBar mActionBar=getSupportActionBar();
-        if(mActionBar!=null){
+    protected void showActionBar(String title) {
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setDisplayShowHomeEnabled(true);
             mActionBar.setTitle(title);
@@ -64,7 +64,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);

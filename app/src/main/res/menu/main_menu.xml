@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        app:showAsAction="always"
-        android:icon="@drawable/crown"
         android:id="@+id/upgrade_pro"
-        android:title="Upgrade to Pro" />
+        android:icon="@drawable/crown"
+        android:title="Upgrade to Pro"
+        app:showAsAction="always" />
 
 </menu>
