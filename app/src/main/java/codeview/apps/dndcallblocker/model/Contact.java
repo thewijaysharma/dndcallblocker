@@ -5,6 +5,7 @@ public class Contact {
     private String phone;
     private boolean isBlacklisted;
 
+
     public Contact(String name, String phone, boolean isBlacklisted) {
         this.name = name;
         this.phone = phone;
