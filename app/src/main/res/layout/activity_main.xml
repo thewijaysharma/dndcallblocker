@@ -6,7 +6,7 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/gradient_bg"
     tools:context="codeview.apps.dndcallblocker.view.activity.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -49,9 +49,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/barlow_bold"
+                    android:fontFamily="@font/barlow_semibold"
                     android:text="Blocking mode is disabled"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
                 <android.support.v7.widget.CardView
