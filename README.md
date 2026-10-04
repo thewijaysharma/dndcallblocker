@@ -1,2 +1,2 @@
 DND-CallBlocker
-It is an android call blocking app. It can make your device go on DND mode which will block all the incoming calls and messages. You can see the blocked calls/messages in logs.
+An android call blocking app to put your phone on DND, completely offline, no in-app purchases, can block numbers using prefixes, uses all the latest Android libraries to ensure smooth UI/UX
